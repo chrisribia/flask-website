@@ -17,12 +17,14 @@ posts = [
 ]
 
 @app.route("/")
-def hello():
+@app.route("/home")
+def home():
     return render_template('home.html',posts = posts)
 
 @app.route("/about")
 def about():
     return render_template('about.html',posts = posts)
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -31,7 +33,6 @@ def register():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
-
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
